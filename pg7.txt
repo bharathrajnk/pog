@@ -1,0 +1,48 @@
+Write an XML for student information and access second students data using 
+DOM.
+Schl.xml:
+<?xml version="1.0"?>
+<school>
+<class>
+<class_title>XML</class_title>
+<students>
+<student>
+<firstname>aaa</firstname>
+<lastname>bbb</lastname>
+</student>
+<student>
+<firstname>aaa</firstname>
+<lastname>bbb</lastname>
+</student>
+</students>
+</class>
+</school>
+School.html:
+<html>
+<head>
+<title>Accessing XML data</title>
+<script type="text/javascript"> 
+function getStudentData()
+{
+var xmldoc;
+xmldoc=new ActiveXObject("Microsoft.XMLDOM"); 
+xmldoc.load("school.xml"); 
+nodeSchool=xmldoc.documentElement;
+nodeClass=nodeSchool.firstChild; 
+nodeStudents=nodeClass.lastChild; 
+nodeStudent=nodeStudents.lastChild; 
+nodeFirstname=nodeStudent.firstChild; 
+nodeLastname=nodeFirstname.nextSibling;
+message.innerHTML="Name:"+nodeFirstname.firstChild.nodeValue+" 
+"+nodeLastname.firstChild.nodeValue;
+}
+</script>
+</head>
+<body bgcolor="pink">
+<center>
+<h1>Accessing XML Data</h1>
+<div id="message"></div>
+<input type="button" value="GET DATA" onClick="getStudentData()">
+</center>
+</body>
+</html>
